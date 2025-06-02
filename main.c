@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include <time.h>
 #include "utils.h"
-// utils.h
 
-
+// 1. Spannung berechnen
 void calculate_voltage() {
     float I, R;
     printf("Enter current (I in amperes): ");
@@ -19,6 +19,7 @@ void calculate_voltage() {
     save_to_file(result);
 }
 
+// 2. Strom berechnen
 void calculate_current() {
     float V, R;
     printf("Enter voltage (V in volts): ");
@@ -32,6 +33,7 @@ void calculate_current() {
     save_to_file(result);
 }
 
+// 3. Widerstand berechnen
 void calculate_resistance() {
     float V, I;
     printf("Enter voltage (V in volts): ");
@@ -45,6 +47,21 @@ void calculate_resistance() {
     save_to_file(result);
 }
 
+// 4. Leistung berechnen
+void calculate_power() {
+    float V, I;
+    printf("Enter voltage (V in volts): ");
+    scanf("%f", &V);
+    printf("Enter current (I in amperes): ");
+    scanf("%f", &I);
+    float P = V * I;
+    printf("Power (P) = %.2f watts\n", P);
+    char result[100];
+    sprintf(result, "Calculated Power: %.2f W (V=%.2f, I=%.2f)", P, V, I);
+    save_to_file(result);
+}
+
+// 5. input.txt laden (mehrere Datensätze)
 void load_from_file() {
     FILE *file = fopen("input.txt", "r");
     if (!file) {
@@ -75,6 +92,65 @@ void load_from_file() {
     fclose(file);
 }
 
+// 6. Farbcode (Textbasiert)
+int color_to_digit(const char *color) {
+    if (strcmp(color, "schwarz") == 0) return 0;
+    if (strcmp(color, "braun") == 0) return 1;
+    if (strcmp(color, "rot") == 0) return 2;
+    if (strcmp(color, "orange") == 0) return 3;
+    if (strcmp(color, "gelb") == 0) return 4;
+    if (strcmp(color, "gruen") == 0) return 5;
+    if (strcmp(color, "blau") == 0) return 6;
+    if (strcmp(color, "violett") == 0) return 7;
+    if (strcmp(color, "grau") == 0) return 8;
+    if (strcmp(color, "weiss") == 0) return 9;
+    return -1;
+}
+
+void resistor_color_code() {
+    char color1[20], color2[20], multiplier_color[20];
+    printf("Enter first band color: ");
+    scanf("%s", color1);
+    printf("Enter second band color: ");
+    scanf("%s", color2);
+    printf("Enter multiplier band color: ");
+    scanf("%s", multiplier_color);
+
+    int d1 = color_to_digit(color1);
+    int d2 = color_to_digit(color2);
+    int mult = color_to_digit(multiplier_color);
+
+    if (d1 == -1 || d2 == -1 || mult == -1) {
+        printf("Invalid color input.\n");
+        return;
+    }
+
+    long resistance = (d1 * 10 + d2) * pow(10, mult);
+    printf("Resistance: %ld ohms\n", resistance);
+
+    char result[150];
+    sprintf(result, "Resistor Code: %s-%s-%s = %ld ohms", color1, color2, multiplier_color, resistance);
+    save_to_file(result);
+}
+
+// 7. Spannungsteiler
+void voltage_divider() {
+    float Vin, R1, R2;
+    printf("Enter input voltage (Vin): ");
+    scanf("%f", &Vin);
+    printf("Enter R1 (ohms): ");
+    scanf("%f", &R1);
+    printf("Enter R2 (ohms): ");
+    scanf("%f", &R2);
+
+    float Vout = Vin * R2 / (R1 + R2);
+    printf("Output Voltage (Vout) across R2: %.2f V\n", Vout);
+
+    char result[150];
+    sprintf(result, "Voltage Divider: Vin=%.2f, R1=%.2f, R2=%.2f → Vout=%.2f V", Vin, R1, R2, Vout);
+    save_to_file(result);
+}
+
 int main() {
     int choice;
     do {
@@ -84,7 +160,10 @@ int main() {
         printf("3. Calculate Resistance (R = V ÷ I)\n");
         printf("4. Load values from input.txt\n");
         printf("5. Exit\n");
-        printf("Choose an option (1–5): ");
+        printf("6. Calculate Power (P = V × I)\n");
+        printf("7. Resistor Color Code Calculator\n");
+        printf("8. Voltage Divider Simulation\n");
+        printf("Choose an option (1–8): ");
         scanf("%d", &choice);
 
         switch (choice) {
@@ -93,6 +172,9 @@ int main() {
             case 3: calculate_resistance(); break;
             case 4: load_from_file(); break;
             case 5: printf("Goodbye!\n"); break;
+            case 6: calculate_power(); break;
+            case 7: resistor_color_code(); break;
+            case 8: voltage_divider(); break;
             default: printf("Invalid choice. Please try again.\n");
         }
     } while (choice != 5);

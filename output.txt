@@ -2,3 +2,13 @@
 [2025-06-02 14:06] Calculated Current: 1.00 A (V=15.00, R=15.00)
 [2025-06-02 14:06] Loaded Result: V=12.00, I=3.00, R=4.00
 [2025-06-02 14:14] Loaded Result: V=5.00, I=8.33, R=0.60
+[2025-06-02 15:11] Loaded Result: V=12.00, I=3.00, R=4.00
+[2025-06-02 15:11] Loaded Result: V=5.00, I=0.50, R=10.00
+[2025-06-02 15:11] Loaded Result: V=9.00, I=3.00, R=3.00
+[2025-06-02 15:55] Loaded Result: V=12.00, I=3.00, R=4.00
+[2025-06-02 15:55] Loaded Result: V=5.00, I=0.50, R=10.00
+[2025-06-02 15:55] Loaded Result: V=9.00, I=3.00, R=3.00
+[2025-06-02 15:56] Calculated Voltage: 12.00 V (I=3.00, R=4.00)
+[2025-06-02 15:56] Resistor Code: schwarz-blau-weiss = 6000000000 ohms
+[2025-06-02 16:01] Resistor Code: braun-rot-gelb = 120000 ohms
+[2025-06-02 16:01] Voltage Divider: Vin=3.00, R1=450.00, R2=400.00 → Vout=1.41 V
