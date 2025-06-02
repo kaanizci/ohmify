@@ -1,27 +1,17 @@
-# Ohmify ⚡ – Ohm'sches Gesetz in C
+# Ohmify
 
-Ohmify ist ein einfaches C-Projekt, das elektrische Größen mithilfe des Ohm'schen Gesetzes berechnet:
+Ohmify ist ein C-Programm, das verschiedene elektrische Berechnungen und Simulationen durchführt. Es bietet eine einfache Benutzeroberfläche, um Werte wie Spannung, Strom, Widerstand, Leistung und mehr zu berechnen.
 
-> **V = I × R**, **I = V ÷ R**, **R = V ÷ I**
+## Funktionen
+1. **Spannung berechnen**: V = I × R
+2. **Strom berechnen**: I = V ÷ R
+3. **Widerstand berechnen**: R = V ÷ I
+4. **Leistung berechnen**: P = V × I
+5. **Werte aus Datei laden**: Lese Werte aus `input.txt` und berechne fehlende Parameter.
+6. **Farbcode-Widerstandsrechner**: Berechne Widerstand basierend auf Farbcode.
+7. **Spannungsteiler-Simulation**: Berechne Ausgangsspannung basierend auf R1 und R2.
 
-## 🎯 Ziel
-
-Das Projekt wurde als Einstieg in die C-Programmierung für Elektrotechnik-Studierende entwickelt. Es trainiert:
-- Benutzereingaben mit `scanf`
-- Formatierte Ausgaben mit `printf`
-- Mathematische Berechnungen mit `float`
-- Dateiein- und -ausgabe (`input.txt`, `output.txt`)
-- Modularisierung mit Header-Dateien
-
-## 🧪 Funktionen
-
-- Berechnung von Spannung, Strom oder Widerstand über ein Menü
-- Laden von mehreren Datensätzen aus einer Datei (`input.txt`)
-- Speichern der Ergebnisse mit Zeitstempel in `output.txt`
-
-## 🖥️ Verwendung
-
-### 🔧 Kompilieren:
-
-```bash
-gcc main.c utils.c -o ohmify
+## Installation
+1. Stelle sicher, dass `gcc` installiert ist:
+   ```bash
+   brew install gcc
